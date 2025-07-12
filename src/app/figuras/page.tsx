@@ -48,83 +48,129 @@ const figuras = [
 
 export default function Figuras() {
   return (
-    <div className="container py-5">
-      <h1 className="mb-2 text-center" style={{fontFamily: 'Orbitron, sans-serif', fontSize: '2.5rem', color: '#ffe082'}}>Catálogo Completo</h1>
-      <p className="text-center mb-4" style={{color: '#ffe082'}}>6 figuras disponibles</p>
-      <div className="row">
-        {figuras.map((figura, idx) => (
-          <div className="col-md-4 mb-4" key={idx}>
-            <div className="card h-100 shadow-lg" style={{background: '#181a20', borderRadius: '18px', border: 'none', color: '#fff'}}>
-              <div style={{
-                position: 'relative',
-                width: '100%',
-                height: '260px',
-                background: '#222',
-                borderRadius: '18px 18px 0 0',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                overflow: 'hidden'
-              }}>
-                <img
-                  src={figura.imagen}
-                  alt={figura.nombre}
-                  style={{
-                    width: '90%',
-                    height: '90%',
-                    objectFit: 'contain',
-                    borderRadius: '18px 18px 0 0',
-                    background: '#222'
-                  }}
-                />
-                {figura.etiqueta && (
-                  <span style={{
-                    position: 'absolute',
-                    top: 12,
-                    left: 12,
-                    background: '#ff5252',
-                    color: '#fff',
-                    padding: '4px 10px',
-                    borderRadius: '8px',
-                    fontWeight: 'bold',
-                    fontSize: '1rem'
-                  }}>{figura.etiqueta}</span>
-                )}
-                <span style={{
-                  position: 'absolute',
-                  top: 12,
-                  right: 12,
-                  background: '#8f5cff',
+    <div
+      style={{
+        minHeight: '100vh',
+        width: '100vw',
+        background: '#10121a',
+        padding: '0',
+        margin: '0',
+        boxSizing: 'border-box',
+        overflowX: 'hidden',
+      }}
+    >
+      <div className="container py-5">
+        <h1 className="mb-2 text-center" style={{fontFamily: 'Orbitron, sans-serif', fontSize: '2.5rem', color: '#ffe082'}}>Catálogo Completo</h1>
+        <p className="text-center mb-4" style={{color: '#ffe082'}}>6 figuras disponibles</p>
+        <div className="row">
+          {figuras.map((figura, idx) => (
+            <div className="col-md-4 mb-4" key={idx}>
+              <div
+                className="card h-100 shadow-lg"
+                style={{
+                  background: '#181a20',
+                  borderRadius: '18px',
+                  border: '1.5px solid #23243a',
                   color: '#fff',
-                  padding: '4px 10px',
-                  borderRadius: '8px',
-                  fontWeight: 'bold',
-                  fontSize: '1rem'
-                }}>{figura.categoria}</span>
-              </div>
-              <div className="card-body d-flex flex-column">
-                <h5 className="card-title" style={{fontFamily: 'Orbitron, sans-serif', fontSize: '1.3rem'}}>{figura.nombre}</h5>
-                <div className="mb-1" style={{color: '#ffe082'}}>{'★'.repeat(figura.estrellas)}</div>
-                <p className="card-text mb-1" style={{color: '#bdbdbd'}}>{figura.descripcion}</p>
-                <div className="mb-2">
-                  <span className="fw-bold" style={{fontSize: '1.5rem', color: '#ffe082'}}>
-                    ${figura.precio.toFixed(2)}
-                  </span>
-                  {figura.precioOriginal && (
-                    <span className="text-muted ms-2" style={{textDecoration: 'line-through', fontSize: '1.1rem'}}>
-                      ${figura.precioOriginal.toFixed(2)}
+                  boxShadow: '0 4px 24px 0 #0008',
+                  transition: 'transform 0.18s',
+                }}
+              >
+                <div
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    height: '260px',
+                    background: '#23243a',
+                    borderRadius: '18px 18px 0 0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    overflow: 'hidden',
+                    borderBottom: '1.5px solid #23243a',
+                  }}
+                >
+                  <img
+                    src={figura.imagen}
+                    alt={figura.nombre}
+                    style={{
+                      width: '90%',
+                      height: '90%',
+                      objectFit: 'contain',
+                      borderRadius: '18px 18px 0 0',
+                      background: 'transparent',
+                      boxShadow: '0 2px 12px 0 #0006',
+                      transition: 'transform 0.18s',
+                    }}
+                  />
+                  {figura.etiqueta && (
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: 12,
+                        left: 12,
+                        background: '#ff5252',
+                        color: '#fff',
+                        padding: '4px 10px',
+                        borderRadius: '8px',
+                        fontWeight: 'bold',
+                        fontSize: '1rem',
+                        boxShadow: '0 2px 8px 0 #0005',
+                      }}
+                    >
+                      {figura.etiqueta}
                     </span>
                   )}
+                  <span
+                    style={{
+                      position: 'absolute',
+                      top: 12,
+                      right: 12,
+                      background: '#8f5cff',
+                      color: '#fff',
+                      padding: '4px 10px',
+                      borderRadius: '8px',
+                      fontWeight: 'bold',
+                      fontSize: '1rem',
+                      boxShadow: '0 2px 8px 0 #0005',
+                    }}
+                  >
+                    {figura.categoria}
+                  </span>
                 </div>
-                <div className="mb-2" style={{color: '#bdbdbd', fontSize: '0.95rem'}}>Stock: {figura.stock} unidades</div>
-                <button className="btn btn-warning mt-auto fw-bold" style={{borderRadius: '10px'}}>
-                  <i className="bi bi-cart me-2"></i>Agregar
-                </button>
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title" style={{fontFamily: 'Orbitron, sans-serif', fontSize: '1.3rem'}}>{figura.nombre}</h5>
+                  <div className="mb-1" style={{color: '#ffe082'}}>{'★'.repeat(figura.estrellas)}</div>
+                  <p className="card-text mb-1" style={{color: '#bdbdbd'}}>{figura.descripcion}</p>
+                  <div className="mb-2">
+                    <span className="fw-bold" style={{fontSize: '1.5rem', color: '#ffe082'}}>
+                      ${figura.precio.toFixed(2)}
+                    </span>
+                    {figura.precioOriginal && (
+                      <span className="text-muted ms-2" style={{textDecoration: 'line-through', fontSize: '1.1rem'}}>
+                        ${figura.precioOriginal.toFixed(2)}
+                      </span>
+                    )}
+                  </div>
+                  <div className="mb-2" style={{color: '#bdbdbd', fontSize: '0.95rem'}}>Stock: {figura.stock} unidades</div>
+                  <button className="btn btn-warning mt-auto fw-bold" style={{borderRadius: '10px'}}>
+                    <i className="bi bi-cart me-2"></i>Agregar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+      <style>{`
+        .card:hover {
+          transform: translateY(-8px) scale(1.025);
+          box-shadow: 0 8px 32px 0 #000b;
+        }
+        .card:hover img {
+          transform: scale(1.04);
+        }
+      `}</style>
     </div>
   );
 }
