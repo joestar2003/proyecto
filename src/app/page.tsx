@@ -1,12 +1,7 @@
-
-
-
 "use client";
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
 
 export default function Home() {
-  const { data: session, status } = useSession();
   return (
     <div style={{
       minHeight: '100vh',
@@ -89,108 +84,106 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sección de registro y beneficios extra solo para NO autenticados */}
-      {(!session || !session.user) && (
-        <section style={{
-          maxWidth: 1300,
-          margin: '60px auto 0 auto',
-          background: 'radial-gradient(ellipse at top left, #232532 60%, #181b23 100%)',
-          borderRadius: 24,
-          boxShadow: '0 0 40px 0 #ffe08233',
-          padding: '48px 24px 36px 24px',
-          position: 'relative',
-          color: '#fff',
-        }}>
-          <div style={{ textAlign: 'center', marginBottom: 32 }}>
-            <div style={{
-              width: 90,
-              height: 90,
-              margin: '0 auto 18px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #ffe082 0%, #38a3d1 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-              <svg width="48" height="48" fill="none" viewBox="0 0 24 24">
-                <rect x="4" y="4" width="16" height="16" rx="8" stroke="#181b23" strokeWidth="2"/>
-                <path d="M12 8v4" stroke="#181b23" strokeWidth="2" strokeLinecap="round"/>
-                <circle cx="12" cy="16" r="1" fill="#181b23"/>
-              </svg>
-            </div>
-            <h2 style={{ color: '#ffe082', fontWeight: 900, fontSize: '2.5rem', marginBottom: 8 }}>
-              ¡Regístrate y Obtén <span style={{ color: '#ffe082' }}>10% OFF!</span>
-            </h2>
-            <p style={{ color: '#e0e0e0', fontSize: '1.2rem', maxWidth: 700, margin: '0 auto' }}>
-              Únete a la comunidad ML Wooden Legends y recibe un descuento especial en tu primera compra. Además, accede a ofertas exclusivas y lanzamientos anticipados.
-            </p>
-          </div>
+      {/* Sección de registro y beneficios extra SIEMPRE visible */}
+      <section style={{
+        maxWidth: 1300,
+        margin: '60px auto 0 auto',
+        background: 'radial-gradient(ellipse at top left, #232532 60%, #181b23 100%)',
+        borderRadius: 24,
+        boxShadow: '0 0 40px 0 #ffe08233',
+        padding: '48px 24px 36px 24px',
+        position: 'relative',
+        color: '#fff',
+      }}>
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <div style={{
+            width: 90,
+            height: 90,
+            margin: '0 auto 18px',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #ffe082 0%, #38a3d1 100%)',
             display: 'flex',
-            flexWrap: 'wrap',
-            gap: 32,
+            alignItems: 'center',
             justifyContent: 'center',
-            marginBottom: 32,
           }}>
-            <div style={{ flex: '1 1 220px', minWidth: 220, textAlign: 'center' }}>
-              <div style={{ marginBottom: 10 }}>
-                <svg width="38" height="38" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="8" stroke="#2196f3" strokeWidth="2"/><path d="M12 8v4" stroke="#2196f3" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="16" r="1" fill="#2196f3"/></svg>
-              </div>
-              <div style={{ fontWeight: 700, fontSize: 18, color: '#fff', marginBottom: 2 }}>10% Descuento</div>
-              <div style={{ color: '#bdbdbd', fontSize: 15 }}>En tu primera compra</div>
-            </div>
-            <div style={{ flex: '1 1 220px', minWidth: 220, textAlign: 'center' }}>
-              <div style={{ marginBottom: 10 }}>
-                <svg width="38" height="38" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="8" stroke="#8f5cff" strokeWidth="2"/><path d="M12 8v4" stroke="#8f5cff" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="16" r="1" fill="#8f5cff"/></svg>
-              </div>
-              <div style={{ fontWeight: 700, fontSize: 18, color: '#fff', marginBottom: 2 }}>Acceso VIP</div>
-              <div style={{ color: '#bdbdbd', fontSize: 15 }}>A ofertas exclusivas</div>
-            </div>
-            <div style={{ flex: '1 1 220px', minWidth: 220, textAlign: 'center' }}>
-              <div style={{ marginBottom: 10 }}>
-                <svg width="38" height="38" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="8" stroke="#ffe082" strokeWidth="2"/><path d="M12 8v4" stroke="#ffe082" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="16" r="1" fill="#ffe082"/></svg>
-              </div>
-              <div style={{ fontWeight: 700, fontSize: 18, color: '#fff', marginBottom: 2 }}>Preventa</div>
-              <div style={{ color: '#bdbdbd', fontSize: 15 }}>Nuevos lanzamientos</div>
-            </div>
+            <svg width="48" height="48" fill="none" viewBox="0 0 24 24">
+              <rect x="4" y="4" width="16" height="16" rx="8" stroke="#181b23" strokeWidth="2"/>
+              <path d="M12 8v4" stroke="#181b23" strokeWidth="2" strokeLinecap="round"/>
+              <circle cx="12" cy="16" r="1" fill="#181b23"/>
+            </svg>
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 24, flexWrap: 'wrap', marginBottom: 18 }}>
-            <Link href="/registro" style={{
-              background: '#ffe082',
-              color: '#232532',
-              fontWeight: 700,
-              fontSize: '1.15rem',
-              border: 'none',
-              borderRadius: 10,
-              padding: '14px 36px',
-              boxShadow: '0 2px 12px 0 rgba(255,224,130,0.15)',
-              textDecoration: 'none',
-              transition: 'background 0.2s',
-              marginBottom: 8,
-            }}>
-              Crear Cuenta Gratis
-            </Link>
-            <Link href="/login" style={{
-              background: 'transparent',
-              color: '#ffe082',
-              fontWeight: 700,
-              fontSize: '1.15rem',
-              border: '2px solid #ffe082',
-              borderRadius: 10,
-              padding: '14px 36px',
-              boxShadow: 'none',
-              textDecoration: 'none',
-              transition: 'background 0.2s',
-              marginBottom: 8,
-            }}>
-              Ya Tengo Cuenta
-            </Link>
+          <h2 style={{ color: '#ffe082', fontWeight: 900, fontSize: '2.5rem', marginBottom: 8 }}>
+            ¡Regístrate y Obtén <span style={{ color: '#ffe082' }}>10% OFF!</span>
+          </h2>
+          <p style={{ color: '#e0e0e0', fontSize: '1.2rem', maxWidth: 700, margin: '0 auto' }}>
+            Únete a la comunidad ML Wooden Legends y recibe un descuento especial en tu primera compra. Además, accede a ofertas exclusivas y lanzamientos anticipados.
+          </p>
+        </div>
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 32,
+          justifyContent: 'center',
+          marginBottom: 32,
+        }}>
+          <div style={{ flex: '1 1 220px', minWidth: 220, textAlign: 'center' }}>
+            <div style={{ marginBottom: 10 }}>
+              <svg width="38" height="38" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="8" stroke="#2196f3" strokeWidth="2"/><path d="M12 8v4" stroke="#2196f3" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="16" r="1" fill="#2196f3"/></svg>
+            </div>
+            <div style={{ fontWeight: 700, fontSize: 18, color: '#fff', marginBottom: 2 }}>10% Descuento</div>
+            <div style={{ color: '#bdbdbd', fontSize: 15 }}>En tu primera compra</div>
           </div>
-          <div style={{ textAlign: 'center', color: '#bdbdbd', fontSize: 13, marginTop: 8 }}>
-            * Descuento válido solo para nuevos usuarios. No acumulable con otras ofertas.
+          <div style={{ flex: '1 1 220px', minWidth: 220, textAlign: 'center' }}>
+            <div style={{ marginBottom: 10 }}>
+              <svg width="38" height="38" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="8" stroke="#8f5cff" strokeWidth="2"/><path d="M12 8v4" stroke="#8f5cff" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="16" r="1" fill="#8f5cff"/></svg>
+            </div>
+            <div style={{ fontWeight: 700, fontSize: 18, color: '#fff', marginBottom: 2 }}>Acceso VIP</div>
+            <div style={{ color: '#bdbdbd', fontSize: 15 }}>A ofertas exclusivas</div>
           </div>
-        </section>
-      )}
+          <div style={{ flex: '1 1 220px', minWidth: 220, textAlign: 'center' }}>
+            <div style={{ marginBottom: 10 }}>
+              <svg width="38" height="38" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="8" stroke="#ffe082" strokeWidth="2"/><path d="M12 8v4" stroke="#ffe082" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="16" r="1" fill="#ffe082"/></svg>
+            </div>
+            <div style={{ fontWeight: 700, fontSize: 18, color: '#fff', marginBottom: 2 }}>Preventa</div>
+            <div style={{ color: '#bdbdbd', fontSize: 15 }}>Nuevos lanzamientos</div>
+          </div>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 24, flexWrap: 'wrap', marginBottom: 18 }}>
+          <Link href="/registro" style={{
+            background: '#ffe082',
+            color: '#232532',
+            fontWeight: 700,
+            fontSize: '1.15rem',
+            border: 'none',
+            borderRadius: 10,
+            padding: '14px 36px',
+            boxShadow: '0 2px 12px 0 rgba(255,224,130,0.15)',
+            textDecoration: 'none',
+            transition: 'background 0.2s',
+            marginBottom: 8,
+          }}>
+            Crear Cuenta Gratis
+          </Link>
+          <Link href="/login" style={{
+            background: 'transparent',
+            color: '#ffe082',
+            fontWeight: 700,
+            fontSize: '1.15rem',
+            border: '2px solid #ffe082',
+            borderRadius: 10,
+            padding: '14px 36px',
+            boxShadow: 'none',
+            textDecoration: 'none',
+            transition: 'background 0.2s',
+            marginBottom: 8,
+          }}>
+            Ya Tengo Cuenta
+          </Link>
+        </div>
+        <div style={{ textAlign: 'center', color: '#bdbdbd', fontSize: 13, marginTop: 8 }}>
+          * Descuento válido solo para nuevos usuarios. No acumulable con otras ofertas.
+        </div>
+      </section>
     </div>
   );
 }

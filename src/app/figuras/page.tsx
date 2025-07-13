@@ -1,3 +1,8 @@
+"use client";
+
+import { useCart } from "../components/CartContext";
+import { useEffect, useState } from "react";
+
 const figuras = [
   {
     nombre: "Alucard",
@@ -47,6 +52,22 @@ const figuras = [
 ];
 
 export default function Figuras() {
+  const { addToCart } = useCart();
+  const [search, setSearch] = useState("");
+
+  // Sincronizar búsqueda global desde localStorage
+  useEffect(() => {
+    const handler = () => setSearch(localStorage.getItem("search-figura") || "");
+    window.addEventListener("storage", handler);
+    setSearch(localStorage.getItem("search-figura") || "");
+    return () => window.removeEventListener("storage", handler);
+  }, []);
+
+  // Filtrar figuras
+  const figurasFiltradas = figuras.filter(f =>
+    f.nombre.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div
       style={{
@@ -61,9 +82,9 @@ export default function Figuras() {
     >
       <div className="container py-5">
         <h1 className="mb-2 text-center" style={{fontFamily: 'Orbitron, sans-serif', fontSize: '2.5rem', color: '#ffe082'}}>Catálogo Completo</h1>
-        <p className="text-center mb-4" style={{color: '#ffe082'}}>6 figuras disponibles</p>
+        <p className="text-center mb-4" style={{color: '#ffe082'}}>{figurasFiltradas.length} figuras disponibles</p>
         <div className="row">
-          {figuras.map((figura, idx) => (
+          {figurasFiltradas.map((figura, idx) => (
             <div className="col-md-4 mb-4" key={idx}>
               <div
                 className="card h-100 shadow-lg"
@@ -153,8 +174,10 @@ export default function Figuras() {
                     )}
                   </div>
                   <div className="mb-2" style={{color: '#bdbdbd', fontSize: '0.95rem'}}>Stock: {figura.stock} unidades</div>
-                  <button className="btn btn-warning mt-auto fw-bold" style={{borderRadius: '10px'}}>
-                    <i className="bi bi-cart me-2"></i>Agregar
+                  <button className="btn btn-warning mt-auto fw-bold" style={{borderRadius: '10px'}}
+                    onClick={() => addToCart({ nombre: figura.nombre, imagen: figura.imagen, precio: figura.precio })}
+                  >
+                    <i className="bi bi-cart me-2"></i>Añadir al carrito
                   </button>
                 </div>
               </div>

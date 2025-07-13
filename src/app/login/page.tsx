@@ -1,30 +1,15 @@
-
 'use client';
 
 
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { signIn } from 'next-auth/react';
 
 export default function Login() {
   const [showPass, setShowPass] = useState(false);
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const form = e.currentTarget;
-    const email = (form.email as HTMLInputElement).value;
-    const password = (form.password as HTMLInputElement).value;
-    const result = await signIn('credentials', {
-      redirect: false,
-      email,
-      password,
-    });
-    if (result?.ok) {
-      alert('Bienvenido xd');
-      window.location.href = '/';
-    } else {
-      alert('Error al iniciar sesión');
-    }
+    alert('Funcionalidad de login deshabilitada. Solo frontend.');
   }
   return (
     <div style={{
