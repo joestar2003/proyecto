@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css"
 import NavbarAuth from "./components/NavbarAuth";
 import { Providers } from "./providers";
+import Navbar from "./components/Navbar";
+import { CartProvider } from "./components/CartContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,26 +34,9 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Providers>
-          <div className="container-fluid px-0">
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-              <div className="container px-lg-5">
-                <a className="navbar-brand" href="/">ML Wood Figures</a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                  <div style={{ display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <ul className="navbar-nav mb-2 mb-lg-0" style={{ flexDirection: 'row', gap: 24, marginBottom: 0 }}>
-                      <li className="nav-item"><a className="nav-link" href="/">Inicio</a></li>
-                      <li className="nav-item"><a className="nav-link" href="/figuras">Figuras</a></li>
-                      <li className="nav-item"><a className="nav-link" href="/contacto">Contacto</a></li>
-                    </ul>
-                    <div style={{ marginLeft: 24 }}>
-                      <NavbarAuth />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </nav>
+        <CartProvider>
+          <Providers>
+            <Navbar />
             {children}
             <footer className="py-5 bg-dark">
               <div className="container">
@@ -60,8 +45,8 @@ export default function RootLayout({
                 </p>
               </div>
             </footer>
-          </div>
-        </Providers>
+          </Providers>
+        </CartProvider>
       </body>
     </html>
   );

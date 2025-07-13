@@ -14,3 +14,11 @@ model User {
   password  String
   createdAt DateTime @default(now())
 }
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  nombre    String
+  email     String
+  mensaje   String
+  createdAt DateTime @default(now())
+}
